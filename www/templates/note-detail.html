@@ -2,13 +2,36 @@
 <ion-view view-title="{{note.name}}">
   <ion-content class="padding">
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/notes">
-        <img ng-src="{{note.face}}" style="width: 64px; height: 64px">
-        <p>
-          {{note.lastNote}}
-        </p>
+      <ion-item class="item-remove-animate item-thumbnail-left item-button-right" href="#">
+        <img ng-src="{{note.face}}" style="width: 400px; height: 200px">
+        <div>
+            <textarea rows="4" cols="50" ng-model="note.lastNote">
+              {{note.lastNote}}
+            </textarea>
+          <a href="#/tab/notes">
+            <button class="button button-balanced" ng-click="save()">
+              Save
+            </button>
+          </a>
+          <a href="#/tab/notes">
+            <button class="button button-balanced">
+              Back
+            </button>
+          </a>
+        </div>
+
+          <button class="button button-assertive" ng-click="remove()">
+            Delete
+            <!-- <i class="icon ion-close-circled"></i> -->
+          </button>
+        </a>
+
       </ion-item>
+
     </ion-list>
 
   </ion-content>
 </ion-view>
+
+
+

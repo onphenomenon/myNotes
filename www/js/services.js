@@ -51,7 +51,8 @@ angular.module('starter.services', [])
       return storage.notes.length;
     },
     remove: function(note) {
-      notes.splice(storage.notes.indexOf(note), 1);
+      storage.notes.splice(storage.notes.indexOf(note), 1);
+      console.log("storage notes ", storage.notes)
     },
     get: function(noteId) {
       for (var i = 0; i < storage.notes.length; i++) {

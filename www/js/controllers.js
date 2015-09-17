@@ -35,9 +35,10 @@ angular.module('starter.controllers', [])
 
   $scope.title = ''
   $scope.text = '';
-  $scope.number = Notes.length();
+  $scope.number = function() {
+    return Notes.length();
+  }
 })
-
 .controller('NotesCtrl', function($scope, Notes) {
 
   $scope.notes = Notes.all();
@@ -48,15 +49,28 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('NoteDetailCtrl', function($scope, $stateParams, Notes, $ionicListDelegate) {
+.controller('NoteDetailCtrl', function($scope, $stateParams, Notes, $location) {
   $scope.note = Notes.get($stateParams.noteId);
 
-  $scope.remove = function(note) {
+
+
+  $scope.remove = function() {
+    console.log("deleting ", this.note);
     Notes.remove(this.note);
+    $location.path('/tab/notes');
+
   };
-  // $scope.showDeleteButtons = function() {
-  //   $ionicListDelegate.showDelete(true);
-  // };
+
+  $scope.save = function(){
+    console.log("entering save function ", this.note.lastNote)
+    if(this.note.lastNote.length > 0){
+      console.log("Note object before: ", this.note.lastNote);
+      Notes.save(this.note.name, this.note.lastNote);
+    }
+
+  }
+
+
 
 })
 
