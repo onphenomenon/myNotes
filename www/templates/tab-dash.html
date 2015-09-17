@@ -1,6 +1,6 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="New Note">
   <ion-content class="padding">
-    <div class="list card">
+    <!-- <div class="list card">
       <div class="item item-divider">Recent Updates</div>
         <div>
           <button class="button button-primary button-block " ng-click="checkForUpdates()">
@@ -15,20 +15,28 @@
           There is a fire in <b>sector 3</b>
         </div>
       </div>
+    </div> -->
+    <div class="list card">
+      <form ng-submit="save()" >
+        <label class="item item-input">
+          <span class="input-label">Note Title</span>
+          <input type="text" ng-model="title">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Note Text</span>
+          <input type="text" ng-model="text">
+
+        </label>
+        <label class="item item-input">
+          <input type="submit" id="submit" value="Submit" />
+        </label>
+      </form>
     </div>
     <div class="list card">
-      <div class="item item-divider">Health</div>
+      <div class="item item-divider">Note Stats</div>
       <div class="item item-body">
         <div>
-          You ate an apple today!
-        </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
+          You have <b>{{ number }}</b> notes in your log.
         </div>
       </div>
     </div>

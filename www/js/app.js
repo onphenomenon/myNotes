@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core','ionic.service.deploy', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','ionic.service.core','ionic.service.deploy', 'starter.controllers', 'starter.services', 'ngStorage'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -50,21 +50,21 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.deploy', 
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.notes', {
+      url: '/notes',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-notes': {
+          templateUrl: 'templates/tab-notes.html',
+          controller: 'NotesCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.note-detail', {
+      url: '/notes/:noteId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-notes': {
+          templateUrl: 'templates/note-detail.html',
+          controller: 'NoteDetailCtrl'
         }
       }
     })

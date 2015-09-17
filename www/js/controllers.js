@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, Notes) {
   $scope.doUpdate = function() {
     $ionicDeploy.update().then(function(res) {
       console.log("Ionic Deploy: Update Success! ", res);
@@ -20,26 +20,44 @@ angular.module('starter.controllers', [])
     }, function(err) {
       console.error('Ionic Deploy: Unable to check for updates ', err);
     });
-  }
-})
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
   };
+
+  $scope.save = function(){
+    console.log("entering save function ", this.text)
+    if(this.title.length > 0 && this.text.length > 0){
+      console.log("Note object before: ", this.text);
+      Notes.save(this.title, this.text);
+      this.text = '';
+      this.title = '';
+    }
+
+  }
+
+  $scope.title = ''
+  $scope.text = '';
+  $scope.number = Notes.length();
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('NotesCtrl', function($scope, Notes) {
+
+  $scope.notes = Notes.all();
+  $scope.remove = function(note) {
+    Notes.remove(note);
+  };
+
+
+})
+
+.controller('NoteDetailCtrl', function($scope, $stateParams, Notes, $ionicListDelegate) {
+  $scope.note = Notes.get($stateParams.noteId);
+
+  $scope.remove = function(note) {
+    Notes.remove(this.note);
+  };
+  // $scope.showDeleteButtons = function() {
+  //   $ionicListDelegate.showDelete(true);
+  // };
+
 })
 
 .controller('AccountCtrl', function($scope) {
